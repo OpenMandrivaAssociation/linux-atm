@@ -17,7 +17,6 @@ Patch0:		linux-atm-2.4.1-gcc3.4-fix.patch
 Patch1:		linux-atm-2.4.1-libtool-fixes.patch
 Patch2:		linux-atm-2.4.1-64bit-fixes.patch
 Patch3:		linux-atm-2.4.1-gcc4.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	bison
 BuildRequires:	flex
 %if %{mdkversion} >= 1010
