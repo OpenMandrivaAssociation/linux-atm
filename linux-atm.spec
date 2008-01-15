@@ -3,7 +3,7 @@
 %define libname		lib%{name}
 %define fulllibname	%mklibname %{name} %{major}
 %define version		2.4.1
-%define release		%mkrel 10
+%define release		%mkrel 11
 
 Name:		%{name}
 Version:	%{version}
