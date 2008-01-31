@@ -4,7 +4,7 @@
 
 Name:		linux-atm
 Version:	2.5.0
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Tools and libraries for ATM
 License:	GPLv2+
 Group:		System/Libraries
@@ -35,6 +35,8 @@ Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Provides:	libatm-devel = %{version}-%{release}
+Provides:	atm-devel = %{version}-%{release}
 Obsoletes:	%mklibname %{name} 1
 
 %description -n	%{develname}
