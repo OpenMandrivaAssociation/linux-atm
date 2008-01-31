@@ -1,97 +1,91 @@
-%define name		linux-atm
-%define major		1
-%define libname		lib%{name}
-%define fulllibname	%mklibname %{name} %{major}
-%define version		2.4.1
-%define release		%mkrel 11
+%define major 1
+%define libname %mklibname atm %{major}
+%define develname %mklibname atm -d
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		linux-atm
+Version:	2.5.0
+Release:	%mkrel 1
 Summary:	Tools and libraries for ATM
-License:	GPL
+License:	GPLv2+
 Group:		System/Libraries
 Url:		http://linux-atm.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/linux-atm/%{name}-%{version}.tar.bz2
-Patch0:		linux-atm-2.4.1-gcc3.4-fix.patch
-Patch1:		linux-atm-2.4.1-libtool-fixes.patch
-Patch2:		linux-atm-2.4.1-64bit-fixes.patch
-Patch3:		linux-atm-2.4.1-gcc4.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Patch4:		linux-atm-2.5.0-open-macro.patch
+Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
 BuildRequires:	bison
 BuildRequires:	flex
-%if %{mdkversion} >= 1010
-BuildRequires:	automake1.4
-%endif
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Tools and libraries to support ATM (Asynchronous Transfer Mode)
 networking and some types of DSL modems.
 
-%package -n	%{fulllibname}
+%package -n %{libname}
 Summary:	Libraries for %{name}
 Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
+Obsoletes:	%mklibname %{name} 1
 
-%description -n	%{fulllibname}
+%description -n	%{libname}
 This package contains libraries needed to run programs linked with %{name}.
 
-%package -n	%{fulllibname}-devel
+%package -n %{develname}
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{fulllibname} = %{version}-%{release}
-Provides:	%{libname}-devel = %{version}-%{release}
+Requires:	%{libname} = %{version}-%{release}
+Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%mklibname %{name} 1
 
-%description -n	%{fulllibname}-devel
+%description -n	%{develname}
 This package contains development files needed to compile programs which
 use %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .gcc3.4
-%patch1 -p1 -b .libtool-fixes
-%patch2 -p1 -b .64bit-fixes
-%patch3 -p1 -b .gcc4
-# stick to built-in libtool 1.4
-%define __libtoolize /bin/true
-autoconf
-automake-1.4 --foreign
+%patch4 -p1
+%patch5 -p1
 
 %build
-%configure2_5x --enable-shared
+%configure2_5x \
+	--enable-shared \
+	--enable-cisco \
+	--enable-mpoa_1_1 \
+	--enable-multipoint
+
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall
+rm -rf %{buildroot}
+%makeinstall_std
+
+install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
-%post -n %{fulllibname} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
-%postun -n %{fulllibname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root)
 %doc README AUTHORS ChangeLog NEWS THANKS BUGS
-%doc COPYING COPYING.GPL COPYING.LGPL
 %config(noreplace) %{_sysconfdir}/atmsigd.conf
+%config(noreplace) %{_sysconfdir}/hosts.atm
 %{_bindir}/*
 %{_sbindir}/*
 %{_mandir}/man4/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
 
-%files -n %{fulllibname}
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
-%files -n %{fulllibname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
 %{_libdir}/*.la
-
