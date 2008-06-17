@@ -4,7 +4,7 @@
 
 Name:		linux-atm
 Version:	2.5.0
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	Tools and libraries for ATM
 License:	GPLv2+
 Group:		System/Libraries
