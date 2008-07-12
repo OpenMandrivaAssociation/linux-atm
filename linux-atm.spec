@@ -4,12 +4,13 @@
 
 Name:		linux-atm
 Version:	2.5.0
-Release:	%mkrel 4
+Release:	%mkrel 5
 Summary:	Tools and libraries for ATM
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://linux-atm.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/linux-atm/%{name}-%{version}.tar.bz2
+Patch0:		linux-atm-gcc43.diff
 Patch4:		linux-atm-2.5.0-open-macro.patch
 Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
 BuildRequires:	bison
@@ -44,7 +45,9 @@ This package contains development files needed to compile programs which
 use %{name}.
 
 %prep
+
 %setup -q
+%patch0 -p0
 %patch4 -p1
 %patch5 -p1
 
