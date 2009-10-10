@@ -4,10 +4,10 @@
 
 Name:		linux-atm
 Version:	2.5.0
-Release:	%mkrel 7
+Release:	%mkrel 8
 Summary:	Tools and libraries for ATM
 License:	GPLv2+
-Group:		System/Libraries
+Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/linux-atm/%{name}-%{version}.tar.bz2
 Patch0:		linux-atm-gcc43.diff
