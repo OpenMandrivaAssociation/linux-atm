@@ -10,7 +10,6 @@ License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/linux-atm/linux-atm/%{version}/%{name}-%{version}.tgz
-Patch0:		linux-atm-gcc43.diff
 Patch1:		linux-atm-2.5.0-format_not_a_string_literal_and_no_format_arguments.patch
 Patch4:		linux-atm-2.5.0-open-macro.patch
 Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
@@ -48,7 +47,6 @@ use %{name}.
 %prep
 
 %setup -q
-%patch0 -p0
 %patch1 -p1
 %patch4 -p1
 %patch5 -p1
@@ -58,7 +56,8 @@ use %{name}.
 	--enable-shared \
 	--enable-cisco \
 	--enable-mpoa_1_1 \
-	--enable-multipoint
+	--enable-multipoint \
+	--with-kernel-headers=%{_includedir}
 
 %make
 
