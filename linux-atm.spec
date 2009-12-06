@@ -2,14 +2,14 @@
 %define libname %mklibname atm %{major}
 %define develname %mklibname atm -d
 
+Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
-Version:	2.5.0
-Release:	%mkrel 8
-Summary:	Tools and libraries for ATM
+Version:	2.5.1
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/linux-atm/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/project/linux-atm/linux-atm/%{version}/%{name}-%{version}.tgz
 Patch0:		linux-atm-gcc43.diff
 Patch1:		linux-atm-2.5.0-format_not_a_string_literal_and_no_format_arguments.patch
 Patch4:		linux-atm-2.5.0-open-macro.patch
