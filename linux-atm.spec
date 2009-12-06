@@ -56,8 +56,7 @@ use %{name}.
 	--enable-shared \
 	--enable-cisco \
 	--enable-mpoa_1_1 \
-	--enable-multipoint \
-	--with-kernel-headers=%{_includedir}
+	--enable-multipoint
 
 %make
 
