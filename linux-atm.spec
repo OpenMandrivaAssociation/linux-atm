@@ -5,7 +5,7 @@
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
 Version:	2.5.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
@@ -58,7 +58,7 @@ use %{name}.
 	--enable-mpoa_1_1 \
 	--enable-multipoint
 
-%make
+%make -j1
 
 %install
 rm -rf %{buildroot}
