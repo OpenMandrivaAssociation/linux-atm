@@ -65,6 +65,9 @@ use %{name}.
 
 install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 
+# (tpg) remove this files
+rm -rf %{buildroot}/lib/firmware
+
 %files
 %doc README AUTHORS ChangeLog NEWS THANKS BUGS
 %config(noreplace) %{_sysconfdir}/atmsigd.conf
