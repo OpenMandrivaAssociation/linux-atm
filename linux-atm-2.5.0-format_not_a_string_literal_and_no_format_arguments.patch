@@ -1,0 +1,12 @@
+diff -Naur linux-atm-2.5.0/src/test/ttcp.c linux-atm-2.5.0.tpg/src/test/ttcp.c
+--- linux-atm-2.5.0/src/test/ttcp.c	2005-04-18 16:18:28.000000000 +0000
++++ linux-atm-2.5.0.tpg/src/test/ttcp.c	2009-02-06 21:08:02.000000000 +0000
+@@ -663,7 +663,7 @@
+     exit(0);
+ 
+   usage:
+-    fprintf(stderr, Usage);
++    fprintf(stderr, "%s", Usage);
+     exit(1);
+ }
+ 
