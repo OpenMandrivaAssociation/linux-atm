@@ -5,7 +5,7 @@
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
 Version:	2.5.1
-Release:	%mkrel 4
+Release:	5
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
@@ -15,7 +15,6 @@ Patch4:		linux-atm-2.5.0-open-macro.patch
 Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Tools and libraries to support ATM (Asynchronous Transfer Mode)
@@ -25,7 +24,7 @@ networking and some types of DSL modems.
 Summary:	Libraries for %{name}
 Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
-Obsoletes:	%mklibname %{name} 1
+Obsoletes:	%{mklibname %{name} 1} < 2.5.1
 
 %description -n	%{libname}
 This package contains libraries needed to run programs linked with %{name}.
@@ -61,13 +60,9 @@ use %{name}.
 %make -j1
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 install -m 0644 src/config/hosts.atm %{buildroot}/etc/
-
-%clean
-rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -78,7 +73,6 @@ rm -rf %{buildroot}
 %endif
 
 %files
-%defattr(-,root,root)
 %doc README AUTHORS ChangeLog NEWS THANKS BUGS
 %config(noreplace) %{_sysconfdir}/atmsigd.conf
 %config(noreplace) %{_sysconfdir}/hosts.atm
@@ -89,11 +83,9 @@ rm -rf %{buildroot}
 %{_mandir}/man8/*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.a
 %{_libdir}/*.so
