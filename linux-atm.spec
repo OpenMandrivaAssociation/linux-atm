@@ -15,6 +15,7 @@ Patch4:		linux-atm-2.5.0-open-macro.patch
 Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
 BuildRequires:	bison
 BuildRequires:	flex
+BuildRequires:	byacc
 
 %description
 Tools and libraries to support ATM (Asynchronous Transfer Mode)
