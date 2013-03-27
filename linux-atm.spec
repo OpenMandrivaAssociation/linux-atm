@@ -53,8 +53,8 @@ use %{name}.
 
 %build
 #fix build with new automake
-sed -i -e 's,AM_CONFIG_HEADER,AC_CONFIG_HEADERS,g' configure.*
-autoreconf -fi
+#sed -i -e 's,AM_CONFIG_HEADER,AC_CONFIG_HEADERS,g' configure.*
+#autoreconf -fi
 %configure2_5x \
 	--enable-shared \
 	--enable-cisco \
@@ -67,14 +67,6 @@ autoreconf -fi
 %makeinstall_std
 
 install -m 0644 src/config/hosts.atm %{buildroot}/etc/
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %files
 %doc README AUTHORS ChangeLog NEWS THANKS BUGS
