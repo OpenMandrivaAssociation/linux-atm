@@ -51,6 +51,9 @@ use %{name}.
 %patch5 -p1
 
 %build
+#fix build with new automake
+sed -i -e 's,AM_CONFIG_HEADER,AC_CONFIG_HEADERS,g' configure.*
+autoreconf -fi
 %configure2_5x \
 	--enable-shared \
 	--enable-cisco \
