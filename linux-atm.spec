@@ -14,8 +14,7 @@ Patch1:		linux-atm-2.5.0-format_not_a_string_literal_and_no_format_arguments.pat
 Patch4:		linux-atm-2.5.0-open-macro.patch
 Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
 BuildRequires:	bison
-BuildRequires:	byacc
-BuildRequires:	flex
+BuildRequires:	flex-devel
 
 %description
 Tools and libraries to support ATM (Asynchronous Transfer Mode)
@@ -41,18 +40,18 @@ This package contains development files needed to compile programs which
 use %{name}.
 
 %prep
-
 %setup -q
 %apply_patches
 
 %build
 %configure2_5x \
+	--disable-static \
 	--enable-shared \
 	--enable-cisco \
 	--enable-mpoa_1_1 \
 	--enable-multipoint
 
-%make -j1
+%make
 
 %install
 %makeinstall_std
@@ -65,6 +64,9 @@ install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 %config(noreplace) %{_sysconfdir}/hosts.atm
 %{_bindir}/*
 %{_sbindir}/*
+/lib/firmware/pca200e.bin
+/lib/firmware/pca200e_ecd.bin2
+/lib/firmware/sba200e_ecd.bin2
 %{_mandir}/man4/*
 %{_mandir}/man7/*
 %{_mandir}/man8/*
@@ -74,6 +76,5 @@ install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 
 %files -n %{devname}
 %{_includedir}/*
-%{_libdir}/*.a
 %{_libdir}/*.so
 
