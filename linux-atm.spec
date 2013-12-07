@@ -5,7 +5,7 @@
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
 Version:	2.5.2
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
