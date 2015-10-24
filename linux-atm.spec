@@ -44,14 +44,14 @@ use %{name}.
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--enable-shared \
 	--enable-cisco \
 	--enable-mpoa_1_1 \
 	--enable-multipoint
 
-%make
+%make LDFLAGS="%{ldflags}"
 
 %install
 %makeinstall_std
