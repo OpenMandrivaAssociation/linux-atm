@@ -1,6 +1,7 @@
 %define major 1
 %define libname %mklibname atm %{major}
 %define devname %mklibname atm -d
+%define _disable_lto 1
 
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
@@ -51,7 +52,7 @@ use %{name}.
 	--enable-mpoa_1_1 \
 	--enable-multipoint
 
-%make LDFLAGS="%{ldflags}"
+%make
 
 %install
 %makeinstall_std
