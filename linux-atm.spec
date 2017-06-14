@@ -6,7 +6,7 @@
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
 Version:	2.5.2
-Release:	12
+Release:	13
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
@@ -60,7 +60,7 @@ use %{name}.
 install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 
 %files
-%doc README AUTHORS ChangeLog NEWS THANKS BUGS
+%doc README AUTHORS NEWS THANKS BUGS
 %config(noreplace) %{_sysconfdir}/atmsigd.conf
 %config(noreplace) %{_sysconfdir}/hosts.atm
 %{_bindir}/*
