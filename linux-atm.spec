@@ -6,7 +6,7 @@
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
 Version:	2.5.2
-Release:	14
+Release:	15
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
@@ -45,6 +45,8 @@ use %{name}.
 %apply_patches
 
 %build
+sed -i '/#define _LINUX_NETDEVICE_H/d' \
+	src/arpd/*.c
 %configure \
 	--disable-static \
 	--enable-shared \
