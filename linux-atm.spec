@@ -42,7 +42,7 @@ use %{name}.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 sed -i '/#define _LINUX_NETDEVICE_H/d' \
