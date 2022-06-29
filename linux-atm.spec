@@ -6,7 +6,7 @@
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
 Version:	2.5.2
-Release:	15
+Release:	16
 License:	GPLv2+
 Group:		System/Configuration/Networking
 Url:		http://linux-atm.sourceforge.net/
@@ -42,12 +42,12 @@ This package contains development files needed to compile programs which
 use %{name}.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
-%build
+sed -i -e 's#$(DESTDIR)/lib/firmware#/$(DESTDIR)/%{_prefix}/lib/firmware#g' src/extra/Makefile.*
 sed -i '/#define _LINUX_NETDEVICE_H/d' \
 	src/arpd/*.c
+%build
 %configure \
 	--disable-static \
 	--enable-shared \
@@ -55,10 +55,10 @@ sed -i '/#define _LINUX_NETDEVICE_H/d' \
 	--enable-mpoa_1_1 \
 	--enable-multipoint
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 
@@ -67,13 +67,10 @@ install -m 0644 src/config/hosts.atm %{buildroot}/etc/
 %config(noreplace) %{_sysconfdir}/atmsigd.conf
 %config(noreplace) %{_sysconfdir}/hosts.atm
 %{_bindir}/*
-%{_sbindir}/*
-/lib/firmware/pca200e.bin
-/lib/firmware/pca200e_ecd.bin2
-/lib/firmware/sba200e_ecd.bin2
-%{_mandir}/man4/*
-%{_mandir}/man7/*
-%{_mandir}/man8/*
+%{_prefix}/lib/firmware/*.bin*
+%doc %{_mandir}/man4/*
+%doc %{_mandir}/man7/*
+%doc %{_mandir}/man8/*
 
 %files -n %{libname}
 %{_libdir}/libatm.so.%{major}*
