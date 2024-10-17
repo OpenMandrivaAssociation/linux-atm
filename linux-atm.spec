@@ -9,7 +9,7 @@ Version:	2.5.2
 Release:	17
 License:	GPLv2+
 Group:		System/Configuration/Networking
-Url:		http://linux-atm.sourceforge.net/
+Url:		https://linux-atm.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/linux-atm/linux-atm/%{version}/%{name}-%{version}.tar.gz
 Patch1:		linux-atm-2.5.0-format_not_a_string_literal_and_no_format_arguments.patch
 Patch4:		linux-atm-2.5.0-open-macro.patch
