@@ -15,6 +15,11 @@ Patch1:		linux-atm-2.5.0-format_not_a_string_literal_and_no_format_arguments.pat
 Patch4:		linux-atm-2.5.0-open-macro.patch
 Patch5:		linux-atm-2.5.0-disable-ilmdiag.patch
 Patch6:		0001-saaldump-atmdump-Include-linux-sockios.h-for-SIOCGST.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	bison
 BuildRequires:	flex-devel
 
