@@ -2,6 +2,7 @@
 %define libname %mklibname atm %{major}
 %define devname %mklibname atm -d
 %define _disable_lto 1
+%global optflags %{optflags} -Wno-error -Wno-implicit-function-declaration
 
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
