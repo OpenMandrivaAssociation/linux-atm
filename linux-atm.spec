@@ -4,6 +4,7 @@
 %define _disable_lto 1
 %global optflags %{optflags} -Wno-error -Wno-implicit-function-declaration
 %global optflags %{optflags} -Wno-incompatible-function-pointer-types
+%global optflags %{optflags} -Wno-incompatible-pointer-types
 
 Summary:	Tools and libraries for ATM networking
 Name:		linux-atm
